@@ -9,8 +9,14 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("temperature-converter")
 class ConverterController {
     @GetMapping("/celsius-fahrenheit/{celsius}")
-    fun getFahrenheit(@PathVariable celsius: Double) = ((celsius * 9) / 5 + 32)
+    fun getFahrenheit(@PathVariable celsius: Double): String {
+        val fahrenheit = ((celsius * 9) / 5) + 32
+        return "Converted $celsius°C to $fahrenheit°F"
+    }
 
     @GetMapping("/fahrenheit-celsius/{fahrenheit}")
-    fun getCelsius(@PathVariable fahrenheit: Double) = ((fahrenheit - 32) * 5) / 9
+    fun getCelsius(@PathVariable fahrenheit: Double): String {
+        val celsius = ((fahrenheit - 32) * 5) / 9
+        return "Converted $fahrenheit°F to $celsius°C"
+    }
 }
